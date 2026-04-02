@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
+  <!-- 背景円 -->
+  <circle cx="50" cy="50" r="48" fill="#ffffffff"/>
+
+  <!-- 星（中央大） -->
+  <polygon
+    points="50,18 55,38 76,38 60,51 66,71 50,58 34,71 40,51 24,38 45,38"
+    fill="#8ad5fdff"
+  />
+
+  <!-- 小さな星（右上） -->
+  <polygon
+    points="78,14 79.5,19 85,19 80.5,22 82,27 78,24 74,27 75.5,22 71,19 76.5,19"
+    fill="#3260d5ff"
+    opacity="0.9"
+  />
+
+  <!-- 小さな星（左下） -->
+  <polygon
+    points="20,68 21,72 25,72 22,74.5 23,78.5 20,76 17,78.5 18,74.5 15,72 19,72"
+    fill="#2880deff"
+    opacity="0.7"
+  />
+
+  <!-- キラキラライン -->
+  <line x1="50" y1="4" x2="50" y2="10" stroke="#277bdcff" stroke-width="2" stroke-linecap="round" opacity="0.6"/>
+  <line x1="83" y1="50" x2="89" y2="50" stroke="#277bdcff" stroke-width="2" stroke-linecap="round" opacity="0.6"/>
+  <line x1="11" y1="50" x2="17" y2="50" stroke="#277bdcff" stroke-width="2" stroke-linecap="round" opacity="0.6"/>
+</svg>

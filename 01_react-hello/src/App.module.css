@@ -1,27 +1,27 @@
 /* src/App.module.css */
-.header {
-  background-color: #2563eb;
-  color: white;
-  padding: 1rem 1.5rem;
-}
-
-.title {
-  font-size: 1.5rem;
-  font-weight: bold;
+.app {
+  min-height: 100vh;
+  background: #f9fafb;
+  display: flex;
+  flex-direction: column;
 }
 
 .main {
-  padding: 1.5rem;
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
+  flex: 1;
+  padding: 2rem 1.5rem;
+  max-width: 960px;
+  margin: 0 auto;
+  width: 100%;
 }
 
-.main h2 {
-  font-size: 1.2rem;
-  font-weight: bold;
-  margin-bottom: 0.75rem;
-  color: #374151;
-  border-left: 4px solid #2563eb;
-  padding-left: 0.5rem;
+.loading {
+  text-align: center;
+  color: #9ca3af;
+  padding: 3rem 0;
+}
+
+.error {
+  text-align: center;
+  color: #e11d48;
+  padding: 3rem 0;
 }
