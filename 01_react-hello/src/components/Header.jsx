@@ -1,5 +1,5 @@
 /* src/components/Header.jsx */
-import { useAuth } from '../context/AuthContext'
+import { useAuth } from '../hooks/useAuth'
 import styles from './Header.module.css'
 
 function Header() {
@@ -10,7 +10,12 @@ function Header() {
       <h1 className={styles.title}>Anime Station</h1>
       {user && (
         <div className={styles.userArea}>
-          <span className={styles.username}>{user.name}</span>
+          <img
+            src={user.photoURL}
+            alt={user.displayName}
+            className={styles.avatar}
+          />
+          <span className={styles.name}>{user.displayName}</span>
           <button className={styles.logout} onClick={logout}>
             ログアウト
           </button>

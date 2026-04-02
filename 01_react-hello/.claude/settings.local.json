@@ -1,7 +1,8 @@
 {
   "permissions": {
     "allow": [
-      "Bash(npm install:*)"
+      "Bash(npm install:*)",
+      "Bash(ls /Users/yoo/projects/react_samples_v2/01_react-hello/.env*)"
     ]
   }
 }

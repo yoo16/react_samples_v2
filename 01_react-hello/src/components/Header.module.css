@@ -2,7 +2,7 @@
 .header {
   background: white;
   border-bottom: 1px solid #e5e7eb;
-  padding: 1rem 1.5rem;
+  padding: 0.75rem 1.5rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -20,9 +20,16 @@
   gap: 0.75rem;
 }
 
-.username {
+.avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.name {
   font-size: 0.875rem;
-  color: #6b7280;
+  color: #374151;
 }
 
 .logout {

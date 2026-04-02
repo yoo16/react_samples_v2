@@ -1,19 +1,19 @@
 /* src/App.jsx */
 import { useState } from 'react'
+import { useAuth } from './hooks/useAuth'
+import { useWorks } from './hooks/useWorks'
 import styles from './App.module.css'
 import Header from './components/Header'
 import { WorkList } from './components/WorkList'
 import SearchBar from './components/SearchBar'
 import Modal from './components/Modal'
-import LoginForm from './components/LoginForm'
+import LoginButton from './components/LoginButton'
 import Spinner from './components/Spinner'
 import Footer from './components/Footer'
-import { useAuth } from './context/AuthContext'
-import { useWorks } from './hooks/useWorks'
 
 function App() {
-  const { user } = useAuth()
-  const { works, loading, error } = useWorks()
+  const { user, loading: authLoading } = useAuth()
+  const { works, loading: worksLoading, error } = useWorks()
 
   const [selectedGenre, setSelectedGenre] = useState('すべて')
   const [query, setQuery] = useState('')
@@ -25,17 +25,17 @@ function App() {
     .filter((w) => selectedGenre === 'すべて' || w.genre === selectedGenre)
     .filter((w) => w.title.includes(query))
 
-  // 未ログインの場合はログインフォームを表示
-  if (!user) {
-    return (
-      <div className={styles.app}>
-        <Header />
-        <LoginForm />
-        <Footer />
-      </div>
-    )
+  // 認証状態の確認中
+  if (authLoading) {
+    return <Spinner />
   }
 
+  // 未ログイン
+  if (!user) {
+    return <LoginButton />
+  }
+
+  // ログイン済み
   return (
     <div className={styles.app}>
       <Header />
@@ -49,10 +49,10 @@ function App() {
           onGenreChange={setSelectedGenre}
         />
 
-        {loading && <Spinner />}
+        {worksLoading && <Spinner />}
         {error && <p className={styles.error}>{error}</p>}
 
-        {!loading && !error && (
+        {!worksLoading && !error && (
           <WorkList
             works={filteredWorks}
             onSelect={(work) => setSelectedWork(work)}
