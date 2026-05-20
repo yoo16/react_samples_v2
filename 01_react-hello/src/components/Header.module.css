@@ -1,17 +1,33 @@
 /* src/components/Header.module.css */
 .header {
-  background: white;
-  border-bottom: 1px solid #e5e7eb;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
   padding: 0.75rem 1.5rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
 }
 
 .title {
   font-size: 1.25rem;
   font-weight: bold;
-  color: #111827;
+  color: var(--text);
+  white-space: nowrap;
+}
+
+.logo img {
+  width: 40px;
+  height: 40px;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.75rem;
+  flex-wrap: wrap;
 }
 
 .userArea {
@@ -29,19 +45,41 @@
 
 .name {
   font-size: 0.875rem;
-  color: #374151;
+  color: var(--text-muted);
 }
 
 .logout {
   padding: 0.35rem 0.875rem;
-  border: 1px solid #d1d5db;
+  border: 1px solid var(--border-strong);
   border-radius: 999px;
-  background: white;
-  color: #374151;
+  background: var(--surface);
+  color: var(--text-muted);
   font-size: 0.875rem;
   cursor: pointer;
 }
 
 .logout:hover {
-  background: #f3f4f6;
+  background: var(--surface-muted);
+}
+
+@media (max-width: 640px) {
+  .header {
+    padding: 0.75rem 1rem;
+  }
+
+  .actions {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .userArea {
+    gap: 0.5rem;
+  }
+
+  .name {
+    max-width: 120px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
 }

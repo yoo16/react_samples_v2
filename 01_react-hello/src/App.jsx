@@ -10,6 +10,7 @@ import Modal from './components/Modal'
 import LoginButton from './components/LoginButton'
 import Spinner from './components/Spinner'
 import Footer from './components/Footer'
+import { ThemeContext } from './context/ThemeContext'
 
 function App() {
   const { user, loading: authLoading } = useAuth()
@@ -19,11 +20,17 @@ function App() {
   const [query, setQuery] = useState('')
   const [selectedWork, setSelectedWork] = useState(null)
 
+  const [theme, setTheme] = useState('light')
+
   const genres = ['すべて', ...new Set(works.map((w) => w.genre))]
 
   const filteredWorks = works
     .filter((w) => selectedGenre === 'すべて' || w.genre === selectedGenre)
     .filter((w) => w.title.includes(query))
+
+  const toggleTheme = () => {
+    setTheme((currentTheme) => (currentTheme === 'light' ? 'dark' : 'light'))
+  }
 
   // 認証状態の確認中
   if (authLoading) {
@@ -37,35 +44,35 @@ function App() {
 
   // ログイン済み
   return (
-    <div className={styles.app}>
-      <Header />
-      <main className={styles.main}>
-
-        <SearchBar
-          query={query}
-          onQueryChange={setQuery}
-          genres={genres}
-          selectedGenre={selectedGenre}
-          onGenreChange={setSelectedGenre}
-        />
-
-        {worksLoading && <Spinner />}
-        {error && <p className={styles.error}>{error}</p>}
-
-        {!worksLoading && !error && (
-          <WorkList
-            works={filteredWorks}
-            onSelect={(work) => setSelectedWork(work)}
+    <ThemeContext.Provider value={{ theme, toggleTheme }}>
+      <div className={styles.app} data-theme={theme}>
+        <Header />
+        <main className={styles.main}>
+          <SearchBar
+            query={query}
+            onQueryChange={setQuery}
+            genres={genres}
+            selectedGenre={selectedGenre}
+            onGenreChange={setSelectedGenre}
           />
+
+          {worksLoading && <Spinner />}
+          {error && <p className={styles.error}>{error}</p>}
+
+          {!worksLoading && !error && (
+            <WorkList
+              works={filteredWorks}
+              onSelect={(work) => setSelectedWork(work)}
+            />
+          )}
+        </main>
+        <Footer />
+
+        {selectedWork && (
+          <Modal work={selectedWork} onClose={() => setSelectedWork(null)} />
         )}
-
-      </main>
-      <Footer />
-
-      {selectedWork && (
-        <Modal work={selectedWork} onClose={() => setSelectedWork(null)} />
-      )}
-    </div>
+      </div>
+    </ThemeContext.Provider>
   )
 }
 

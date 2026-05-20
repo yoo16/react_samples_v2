@@ -1,7 +1,7 @@
 /* src/components/WorkCard.jsx */
 import styles from './WorkCard.module.css'
 
-function WorkCard({ id, title, genre, year, description, image, onSelect }) {
+function WorkCard({ title, genre, year, description, image, onSelect }) {
   return (
     <div className={styles.card} onClick={onSelect}>
       <div className={styles.thumbnailWrapper}>

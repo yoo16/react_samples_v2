@@ -1,9 +1,38 @@
 /* src/App.module.css */
 .app {
+  --app-bg: #f9fafb;
+  --surface: #ffffff;
+  --surface-muted: #f3f4f6;
+  --border: #e5e7eb;
+  --border-strong: #d1d5db;
+  --text: #111827;
+  --text-muted: #374151;
+  --text-soft: #6b7280;
+  --text-faint: #9ca3af;
+  --accent: #1f2937;
+  --accent-contrast: #ffffff;
+  --shadow-hover: 0 4px 16px rgba(0, 0, 0, 0.08);
   min-height: 100vh;
-  background: #f9fafb;
+  background: var(--app-bg);
+  color: var(--text);
   display: flex;
   flex-direction: column;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.app[data-theme='dark'] {
+  --app-bg: #0f172a;
+  --surface: #111827;
+  --surface-muted: #1f2937;
+  --border: #334155;
+  --border-strong: #475569;
+  --text: #f8fafc;
+  --text-muted: #cbd5e1;
+  --text-soft: #94a3b8;
+  --text-faint: #64748b;
+  --accent: #e2e8f0;
+  --accent-contrast: #0f172a;
+  --shadow-hover: 0 10px 24px rgba(2, 6, 23, 0.35);
 }
 
 .main {
@@ -15,7 +44,7 @@
 }
 
 .sectionTitle {
-  color: #111827;
+  color: var(--text);
   font-size: 1.25rem;
   font-weight: bold;
   margin-bottom: 1.5rem;

@@ -8,15 +8,21 @@
 
 .search {
   padding: 0.6rem 1rem;
-  border: 1px solid #d1d5db;
+  border: 1px solid var(--border-strong);
   border-radius: 8px;
   font-size: 0.95rem;
   width: 100%;
+  background: var(--surface);
+  color: var(--text);
   outline: none;
 }
 
 .search:focus {
-  border-color: #6b7280;
+  border-color: var(--text-soft);
+}
+
+.search::placeholder {
+  color: var(--text-soft);
 }
 
 .filters {
@@ -27,24 +33,24 @@
 
 .filter {
   padding: 0.35rem 1rem;
-  border: 1px solid #d1d5db;
+  border: 1px solid var(--border-strong);
   border-radius: 999px;
-  background: white;
-  color: #374151;
+  background: var(--surface);
+  color: var(--text-muted);
   font-size: 0.875rem;
   cursor: pointer;
 }
 
 .filter:hover {
-  background: #f3f4f6;
+  background: var(--surface-muted);
 }
 
 .filterActive {
   padding: 0.35rem 1rem;
-  border: 1px solid #1f2937;
+  border: 1px solid var(--accent);
   border-radius: 999px;
-  background: #1f2937;
-  color: white;
+  background: var(--accent);
+  color: var(--accent-contrast);
   font-size: 0.875rem;
   cursor: pointer;
 }
