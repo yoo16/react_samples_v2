@@ -11,6 +11,7 @@ import LoginButton from './components/LoginButton'
 import Spinner from './components/Spinner'
 import Footer from './components/Footer'
 import { ThemeContext } from './context/ThemeContext'
+import { useEffect } from 'react';
 
 function App() {
   const { user, loading: authLoading } = useAuth()
@@ -31,6 +32,21 @@ function App() {
   const toggleTheme = () => {
     setTheme((currentTheme) => (currentTheme === 'light' ? 'dark' : 'light'))
   }
+
+  // 毎回実行（依存配列なし）— ほぼ使わない
+  useEffect(() => {
+    console.log('毎回実行')
+  })
+
+  // 初回のみ実行（データ取得に最適）
+  useEffect(() => {
+    console.log('初回のみ実行')
+  }, [])
+
+  // selectedGenre が変わるたびに実行
+  useEffect(() => {
+    console.log(selectedGenre)
+  }, [selectedGenre])
 
   // 認証状態の確認中
   if (authLoading) {
