@@ -7,7 +7,7 @@ import ProductModal from '../components/ProductModal';
 import SeatStatusCards from '../components/SeatStatusCards';
 import useOrderingPage from '../hooks/useOrderingPage';
 
-export default function OrderingPage() {
+export default function OrderingPage({ assetBaseUrl }) {
   const {
     seat,
     session,
@@ -44,6 +44,7 @@ export default function OrderingPage() {
               onChange={handleCategoryChange}
             />
             <ProductGrid
+              assetBaseUrl={assetBaseUrl}
               loading={isProductsLoading}
               products={products}
               disabled={session.isOrderClosed}
@@ -55,6 +56,7 @@ export default function OrderingPage() {
             <SeatStatusCards seatNumber={seat.seatNumber} isOrderClosed={session.isOrderClosed} />
 
             <OrderSummary
+              assetBaseUrl={assetBaseUrl}
               orders={session.orders}
               total={session.total}
               disabled={session.isOrderClosed || session.orders.length === 0}
@@ -72,6 +74,7 @@ export default function OrderingPage() {
         />
 
         <ProductModal
+          assetBaseUrl={assetBaseUrl}
           product={selectedProduct}
           disabled={session.isOrderClosed}
           onClose={closeProductModal}

@@ -1,18 +1,18 @@
-export function getInitialSeatId(config) {
+export function getInitialSeatId(initialSeatId = 0) {
   if (typeof window === 'undefined') {
-    return Number(config.seatId ?? 0);
+    return Number(initialSeatId ?? 0);
   }
 
   const storedSeatId = Number(window.localStorage.getItem('selectedSeatId') ?? 0);
-  return storedSeatId > 0 ? storedSeatId : Number(config.seatId ?? 0);
+  return storedSeatId > 0 ? storedSeatId : Number(initialSeatId ?? 0);
 }
 
-export function getInitialSeatNumber(config) {
+export function getInitialSeatNumber(initialSeatNumber = '-') {
   if (typeof window === 'undefined') {
-    return config.seatNumber ?? '-';
+    return initialSeatNumber ?? '-';
   }
 
-  return window.localStorage.getItem('selectedSeatNumber') ?? config.seatNumber ?? '-';
+  return window.localStorage.getItem('selectedSeatNumber') ?? initialSeatNumber ?? '-';
 }
 
 export function persistSelectedSeat(seatId, seatNumber) {

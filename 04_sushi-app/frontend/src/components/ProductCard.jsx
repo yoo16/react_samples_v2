@@ -1,9 +1,6 @@
-import { useAppConfig } from '../context/AppConfigContext';
 import { buildAssetUrl } from '../utils/assetUrl';
 
-export default function ProductCard({ disabled, onSelectProduct, product }) {
-  const { assetBaseUrl = '/' } = useAppConfig();
-
+export default function ProductCard({ assetBaseUrl = '/', disabled, onSelectProduct, product }) {
   return (
     <button
       type="button"

@@ -1,9 +1,7 @@
 import { useEffect, useState } from 'react';
-import { useAppConfig } from '../context/AppConfigContext';
 import { buildAssetUrl } from '../utils/assetUrl';
 
-export default function ProductModal({ disabled, onClose, onConfirm, product }) {
-  const { assetBaseUrl = '/' } = useAppConfig();
+export default function ProductModal({ assetBaseUrl = '/', disabled, onClose, onConfirm, product }) {
   const [quantity, setQuantity] = useState(1);
 
   useEffect(() => {

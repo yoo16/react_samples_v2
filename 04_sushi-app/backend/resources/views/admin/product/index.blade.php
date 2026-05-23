@@ -41,15 +41,22 @@
                             <td>
                                 <div class="product-cell">
                                     @if ($product->image_path !== '')
-                                        <img src="/{{ ltrim($product->image_path, '/') }}" alt="{{ $product->name }}" class="product-thumb">
+                                        <!-- TODO: 画像パスを設定 -->
+                                        <img src="/" alt="{{ $product->name }}" class="product-thumb">
                                     @else
                                         <div class="product-thumb"></div>
                                     @endif
-                                    <span>{{ $product->name }}</span>
+                                    <!-- TODO: 商品名を表示 -->
+                                    <span></span>
                                 </div>
                             </td>
-                            <td class="num">{{ number_format($product->price) }}円</td>
-                            <td>{{ $product->category?->name }}</td>
+                            <td class="num">
+                                <!-- TODO: 価格を表示 -->
+                                円
+                            </td>
+                            <td>
+                                <!-- TODO: カテゴリ名を表示 -->
+                            </td>
                         </tr>
                     @endforeach
                 </tbody>

@@ -1,7 +1,7 @@
 import LoadingOverlay from './LoadingOverlay';
 import ProductCard from './ProductCard';
 
-export default function ProductGrid({ disabled, loading, products, onSelectProduct }) {
+export default function ProductGrid({ assetBaseUrl, disabled, loading, products, onSelectProduct }) {
   if (!products.length) {
     return (
       <>
@@ -19,6 +19,7 @@ export default function ProductGrid({ disabled, loading, products, onSelectProdu
       <div className="grid grid-cols-4 gap-2">
         {products.map((product) => (
           <ProductCard
+            assetBaseUrl={assetBaseUrl}
             key={product.id}
             disabled={disabled}
             product={product}

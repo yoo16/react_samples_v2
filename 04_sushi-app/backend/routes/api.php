@@ -7,8 +7,12 @@ use App\Http\Controllers\Api\SeatController;
 use App\Http\Controllers\Api\VisitController;
 use Illuminate\Support\Facades\Route;
 
+// API のルーティングを定義
+// TODO: エンドポイント: cateory/fetch
 Route::get('category/fetch', [CategoryController::class, 'index']);
+// TODO: エンドポイント: product/fetch
 Route::get('product/fetch', [ProductController::class, 'index']);
+// TODO: エンドポイント: seat/fetch
 Route::get('seat/fetch', [SeatController::class, 'index']);
 Route::get('seat/available', [SeatController::class, 'available']);
 Route::get('seat/find', [SeatController::class, 'show']);

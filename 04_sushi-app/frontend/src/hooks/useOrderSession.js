@@ -2,13 +2,13 @@ import { useEffect, useState } from 'react';
 import { clearStoredOrderSession, getStoredOrderSession, persistOrderSession } from '../utils/orderSessionStorage';
 import { restoreOrderSession } from '../services/orderSessionService';
 
-export default function useOrderSession(config, { setErrorMessage }) {
+export default function useOrderSession(initialVisitStatus, { setErrorMessage }) {
   const [restoredSession] = useState(() => getStoredOrderSession());
   const [orders, setOrders] = useState([]);
   const [total, setTotal] = useState(0);
   const [isBooting, setIsBooting] = useState(true);
   const [visitId, setVisitId] = useState(restoredSession.visitId);
-  const [visitStatus, setVisitStatus] = useState(config.visitStatus ?? 'seated');
+  const [visitStatus, setVisitStatus] = useState(initialVisitStatus ?? 'seated');
   const [completedTotal, setCompletedTotal] = useState(restoredSession.completedTotal);
   const [screen, setScreen] = useState(restoredSession.screen);
 

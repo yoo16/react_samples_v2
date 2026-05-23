@@ -16,19 +16,20 @@ class ProductController extends Controller
 {
     public function index(): View
     {
+        // カテゴリーIDを GETリクエストから取得
         $categoryId = request()->integer('category_id');
+
         // カテゴリーIDが0以下の場合は、nullに変換する
         $selectedCategoryId = $categoryId > 0 ? $categoryId : null;
 
         // TODO: カテゴリーリスト取得
-        $categories = collect();
         // SQL: SELECT * FROM categories ORDER BY sort_order, id
+        $categories = collect();
         // $categories = Category::query()->orderBy('sort_order')->orderBy('id')->get();
 
         // TODO: Product モデルからデータを取得
-        $products = collect();
         // SQL: SELECT * FROM products ORDER BY id
-        // $products = Product::query()->get();
+        $products = collect();
 
         // TODO: カテゴリーIDが指定されている場合は、カテゴリーIDで絞り込む
         // SQL: SELECT * FROM products WHERE category_id = $categoryId
@@ -38,7 +39,7 @@ class ProductController extends Controller
         //     ->orderBy('id')
         //     ->get();
 
-        // admin/product/index.blade.php に、$products, $categories, $selectedCategoryId を渡して表示す
+        // admin/product/index.blade.php に、データを渡して表示
         return view('admin.product.index', [
             'products' => $products,
             'categories' => $categories,
@@ -50,6 +51,7 @@ class ProductController extends Controller
     {
         // カテゴリーリスト取得
         $categories = Category::query()->orderBy('sort_order')->orderBy('id')->get();
+        // admin/product/create.blade.php に、データを渡して表示
         return view('admin.product.create', [
             'categories' => $categories,
         ]);
@@ -80,6 +82,7 @@ class ProductController extends Controller
     public function edit(Product $product): View
     {
         $categories = Category::query()->orderBy('sort_order')->orderBy('id')->get();
+        // admin/product/edit.blade.php に、データを渡して表示
         return view('admin.product.edit', [
             'product' => $product,
             'categories' => $categories,

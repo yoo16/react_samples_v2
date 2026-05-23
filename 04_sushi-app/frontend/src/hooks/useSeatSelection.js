@@ -2,10 +2,10 @@ import { useEffect, useState } from 'react';
 import { findSeatById, loadSeats } from '../services/seatService';
 import { getInitialSeatId, getInitialSeatNumber, persistSelectedSeat } from '../utils/orderSessionStorage';
 
-export default function useSeatSelection({ config, setErrorMessage }) {
+export default function useSeatSelection({ initialSeatId, initialSeatNumber, setErrorMessage }) {
   const [seats, setSeats] = useState([]);
-  const [selectedSeatId, setSelectedSeatId] = useState(() => getInitialSeatId(config));
-  const [selectedSeatNumber, setSelectedSeatNumber] = useState(() => getInitialSeatNumber(config));
+  const [selectedSeatId, setSelectedSeatId] = useState(() => getInitialSeatId(initialSeatId));
+  const [selectedSeatNumber, setSelectedSeatNumber] = useState(() => getInitialSeatNumber(initialSeatNumber));
 
   useEffect(() => {
     const controller = new AbortController();

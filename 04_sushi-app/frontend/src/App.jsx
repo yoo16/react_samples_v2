@@ -1,6 +1,5 @@
 import { useEffect } from 'react';
 import { Navigate, Route, Routes, useLocation, useNavigate } from 'react-router-dom';
-import { useAppConfig } from './context/AppConfigContext';
 import { MessagesProvider } from './context/MessagesContext';
 import { SessionProvider } from './context/SessionContext';
 import { SeatProvider } from './context/SeatContext';
@@ -17,16 +16,16 @@ const SCREEN_PATHS = {
   complete: '/complete',
 };
 
-export default function App() {
-  const config = useAppConfig();
+export default function App({ assetBaseUrl, initialSeatId, initialSeatNumber, initialVisitStatus }) {
   const navigate = useNavigate();
   const location = useLocation();
   const messages = useMessageState();
-  const session = useOrderSession(config, {
+  const session = useOrderSession(initialVisitStatus, {
     setErrorMessage: messages.setErrorMessage,
   });
   const seat = useSeatSelection({
-    config,
+    initialSeatId,
+    initialSeatNumber,
     setErrorMessage: messages.setErrorMessage,
   });
 
@@ -46,7 +45,7 @@ export default function App() {
     <AppProviders session={session} seat={seat} messages={messages}>
       <Routes>
         <Route path="/" element={<StartPage />} />
-        <Route path="/order" element={<OrderingPage />} />
+        <Route path="/order" element={<OrderingPage assetBaseUrl={assetBaseUrl} />} />
         <Route path="/complete" element={<CheckoutCompletePage />} />
         <Route path="*" element={<Navigate to={SCREEN_PATHS[session.screen] ?? SCREEN_PATHS.start} replace />} />
       </Routes>

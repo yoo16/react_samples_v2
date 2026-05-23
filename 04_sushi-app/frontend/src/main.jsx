@@ -2,8 +2,6 @@ import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
 import App from './App';
-import { AppConfigProvider } from './context/AppConfigContext';
-import { getRouterBasename, setRuntimeConfig } from './config/runtimeConfig';
 import './styles/app.css';
 
 const rootElement = document.getElementById('menu-app');
@@ -28,25 +26,41 @@ function resolveConfigValue(primaryValue, fallbackValue) {
   return value;
 }
 
-const config = {
-  ...dataConfig,
-  baseUrl: resolveConfigValue(import.meta.env.VITE_APP_BASE_URL, dataConfig.baseUrl ?? '/'),
-  apiBaseUrl: resolveConfigValue(import.meta.env.VITE_API_BASE_URL, dataConfig.apiBaseUrl ?? '/api/'),
-  assetBaseUrl: resolveConfigValue(import.meta.env.VITE_ASSET_BASE_URL, dataConfig.assetBaseUrl ?? '/'),
-};
+function normalizeBasePath(path) {
+  const value = String(path ?? '/').trim();
 
-config.baseUrl = resolveConfigValue(config.baseUrl, '/');
-config.apiBaseUrl = resolveConfigValue(config.apiBaseUrl, '/api/');
-config.assetBaseUrl = resolveConfigValue(config.assetBaseUrl, '/');
+  if (!value || value === '/') {
+    return '/';
+  }
 
-setRuntimeConfig(config);
+  return `/${value.replace(/^\/+|\/+$/g, '')}/`;
+}
+
+function getRouterBasename(path) {
+  const normalized = normalizeBasePath(path);
+
+  if (normalized === '/') {
+    return '/';
+  }
+
+  return normalized.replace(/\/$/, '');
+}
+
+const baseUrl = resolveConfigValue(import.meta.env.VITE_APP_BASE_URL, dataConfig.baseUrl ?? '/');
+const assetBaseUrl = resolveConfigValue(import.meta.env.VITE_ASSET_BASE_URL, dataConfig.assetBaseUrl ?? '/');
+const initialSeatId = Number(dataConfig.seatId ?? 0);
+const initialSeatNumber = dataConfig.seatNumber ?? '-';
+const initialVisitStatus = dataConfig.visitStatus ?? 'seated';
 
 createRoot(rootElement).render(
   <StrictMode>
-    <AppConfigProvider config={config}>
-      <BrowserRouter basename={getRouterBasename()}>
-        <App />
-      </BrowserRouter>
-    </AppConfigProvider>
+    <BrowserRouter basename={getRouterBasename(baseUrl)}>
+      <App
+        assetBaseUrl={assetBaseUrl}
+        initialSeatId={initialSeatId}
+        initialSeatNumber={initialSeatNumber}
+        initialVisitStatus={initialVisitStatus}
+      />
+    </BrowserRouter>
   </StrictMode>
 );

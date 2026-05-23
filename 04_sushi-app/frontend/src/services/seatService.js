@@ -1,8 +1,15 @@
-import { apiClient } from './api';
+const apiBaseUrl = String(import.meta.env.VITE_API_BASE_URL ?? '').replace(/\/+$/, '');
 
 export async function loadSeats(selectedSeatId, selectedSeatNumber, options = {}) {
-  const seatsResponse = await apiClient.get('seat/fetch', undefined, options);
-  const seats = seatsResponse.seats ?? [];
+  const url = `${apiBaseUrl}/api/seat/fetch`;
+  const response = await fetch(url, options);
+  const payload = await response.json().catch(() => ({}));
+
+  if (!response.ok) {
+    throw new Error(payload.error ?? payload.message ?? 'API request failed');
+  }
+
+  const seats = payload.seats ?? [];
   const selectedSeat = resolveSeatSelection(seats, selectedSeatId, selectedSeatNumber);
   return { seats, selectedSeat };
 }

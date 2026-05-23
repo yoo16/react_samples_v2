@@ -1,9 +1,6 @@
-import { useAppConfig } from '../context/AppConfigContext';
 import { buildAssetUrl } from '../utils/assetUrl';
 
-export default function OrderItemCard({ order }) {
-  const { assetBaseUrl = '/' } = useAppConfig();
-
+export default function OrderItemCard({ assetBaseUrl = '/', order }) {
   return (
     <article className="flex items-center justify-between gap-3 rounded-[20px] p-3">
       {order.product_image_path ? (
