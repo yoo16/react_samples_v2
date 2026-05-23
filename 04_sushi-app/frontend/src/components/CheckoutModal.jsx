@@ -1,5 +1,7 @@
 import OrderItemList from './OrderItemList';
 
+import { formatPrice } from '../utils/formatPrice';
+
 export default function CheckoutModal({ onClose, onConfirm, open, orders, total }) {
   if (!open) {
     return null;
@@ -46,12 +48,4 @@ export default function CheckoutModal({ onClose, onConfirm, open, orders, total 
       </div>
     </div>
   );
-}
-
-function formatPrice(value) {
-  return new Intl.NumberFormat('ja-JP', {
-    style: 'currency',
-    currency: 'JPY',
-    maximumFractionDigits: 0,
-  }).format(Number(value ?? 0));
 }

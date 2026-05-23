@@ -1,4 +1,5 @@
 import { buildAssetUrl } from '../utils/assetUrl';
+import { formatPrice } from '../utils/formatPrice';
 
 export default function OrderItemCard({ order }) {
   // TODO: 小計を計算: 単価 × 数量
@@ -24,12 +25,4 @@ export default function OrderItemCard({ order }) {
       </div>
     </article>
   );
-}
-
-function formatPrice(value) {
-  return new Intl.NumberFormat('ja-JP', {
-    style: 'currency',
-    currency: 'JPY',
-    maximumFractionDigits: 0,
-  }).format(Number(value ?? 0));
 }

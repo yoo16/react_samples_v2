@@ -1,3 +1,5 @@
+import { formatPrice } from '../utils/formatPrice';
+
 export default function CheckoutCompleteScreen({ onBackToTop, seatNumber, total }) {
   return (
     <main className="min-h-screen font-sans text-slate-900">
@@ -22,12 +24,4 @@ export default function CheckoutCompleteScreen({ onBackToTop, seatNumber, total 
       </div>
     </main>
   );
-}
-
-function formatPrice(value) {
-  return new Intl.NumberFormat('ja-JP', {
-    style: 'currency',
-    currency: 'JPY',
-    maximumFractionDigits: 0,
-  }).format(Number(value ?? 0));
 }

@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { buildAssetUrl } from '../utils/assetUrl';
+import { formatPrice } from '../utils/formatPrice';
 
 export default function ProductModal({ disabled, onClose, onConfirm, product }) {
   const [quantity, setQuantity] = useState(1);
@@ -85,12 +86,4 @@ export default function ProductModal({ disabled, onClose, onConfirm, product }) 
       </div>
     </div>
   );
-}
-
-function formatPrice(value) {
-  return new Intl.NumberFormat('ja-JP', {
-    style: 'currency',
-    currency: 'JPY',
-    maximumFractionDigits: 0,
-  }).format(Number(value ?? 0));
 }

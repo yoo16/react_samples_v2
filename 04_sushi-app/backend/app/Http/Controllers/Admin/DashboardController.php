@@ -14,7 +14,7 @@ class DashboardController extends Controller
     {
         $now = Carbon::now();
 
-        $monthlySales = collect();
+        $monthlySales = 0;
         // TODO: Visit モデルから、今月の売上合計を算出する
         // SQL: SELECT SUM(total_with_tax) FROM visits 
         //          WHERE status = 'paid' AND created_at = xxx 

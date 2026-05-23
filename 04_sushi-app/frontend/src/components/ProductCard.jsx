@@ -1,4 +1,5 @@
 import { buildAssetUrl } from '../utils/assetUrl';
+import { formatPrice } from '../utils/formatPrice';
 
 export default function ProductCard({ disabled, onSelectProduct, product }) {
   return (
@@ -26,12 +27,4 @@ export default function ProductCard({ disabled, onSelectProduct, product }) {
       </div>
     </button>
   );
-}
-
-function formatPrice(value) {
-  return new Intl.NumberFormat('ja-JP', {
-    style: 'currency',
-    currency: 'JPY',
-    maximumFractionDigits: 0,
-  }).format(Number(value ?? 0));
 }
