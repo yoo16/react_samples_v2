@@ -1,5 +1,5 @@
 /* test/fetch-test.mjs */
-const API_URL = 'http://localhost:3003'
+const API_URL = 'http://localhost:3001'
 
 const res = await fetch(`${API_URL}/works`)
 
