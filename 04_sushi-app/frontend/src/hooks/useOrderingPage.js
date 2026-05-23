@@ -49,11 +49,16 @@ export default function useOrderingPage() {
     setErrorMessage('');
 
     try {
+      // 注文をサーバーに送信して、最新の注文情報を取得
       await submitOrder(session.visitId, selectedProduct, quantity);
       const orderData = await loadOrders(session.visitId);
       session.setOrders(orderData.orders);
       session.setTotal(orderData.total);
+
+      // 注文完了の音声を再生
       playThanksVoice();
+
+      // 注文完了のメッセージを表示
       messages.setFlashMessage(`${selectedProduct.name} を ${quantity} 皿追加しました。`);
       setSelectedProduct(null);
     } catch (error) {

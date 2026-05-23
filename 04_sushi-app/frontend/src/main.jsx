@@ -47,7 +47,6 @@ function getRouterBasename(path) {
 }
 
 const baseUrl = resolveConfigValue(import.meta.env.VITE_APP_BASE_URL, dataConfig.baseUrl ?? '/');
-const assetBaseUrl = resolveConfigValue(import.meta.env.VITE_ASSET_BASE_URL, dataConfig.assetBaseUrl ?? '/');
 const initialSeatId = Number(dataConfig.seatId ?? 0);
 const initialSeatNumber = dataConfig.seatNumber ?? '-';
 const initialVisitStatus = dataConfig.visitStatus ?? 'seated';
@@ -56,7 +55,6 @@ createRoot(rootElement).render(
   <StrictMode>
     <BrowserRouter basename={getRouterBasename(baseUrl)}>
       <App
-        assetBaseUrl={assetBaseUrl}
         initialSeatId={initialSeatId}
         initialSeatNumber={initialSeatNumber}
         initialVisitStatus={initialVisitStatus}

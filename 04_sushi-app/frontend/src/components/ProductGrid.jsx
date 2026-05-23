@@ -1,7 +1,7 @@
 import LoadingOverlay from './LoadingOverlay';
 import ProductCard from './ProductCard';
 
-export default function ProductGrid({ assetBaseUrl, disabled, loading, products, onSelectProduct }) {
+export default function ProductGrid({ disabled, loading, products, onSelectProduct }) {
   if (!products.length) {
     return (
       <>
@@ -18,13 +18,9 @@ export default function ProductGrid({ assetBaseUrl, disabled, loading, products,
       {loading ? <LoadingOverlay message="商品を読み込んでいます..." /> : null}
       <div className="grid grid-cols-4 gap-2">
         {products.map((product) => (
-          <ProductCard
-            assetBaseUrl={assetBaseUrl}
-            key={product.id}
-            disabled={disabled}
-            product={product}
-            onSelectProduct={onSelectProduct}
-          />
+          // TODO: ProductCard コンポーネントを使用して、商品を表示
+          // Props: key, disabled, product, onSelectProduct
+          <div>ProductCard コンポーネントを表示</div>
         ))}
       </div>
     </>

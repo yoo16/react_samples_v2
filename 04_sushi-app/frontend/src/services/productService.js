@@ -8,8 +8,14 @@ export async function loadProducts(categoryId, options = {}) {
   }
 
   const queryString = query.toString();
-  const url = `${apiBaseUrl}/api/product/fetch${queryString ? `?${queryString}` : ''}`;
+  // TODO: エンドポイント: api/product/fetch?category_id={categoryId}
+  // let url = `${apiBaseUrl}`;
+  let url = `${apiBaseUrl}/api/product/fetch`;
+  // クエリパラメータを URL に追加
+  url += queryString ? `?${queryString}` : '';
+  // Fetch API で商品データを取得
   const response = await fetch(url, options);
+  // レスポンスの JSON をパースして、payload 変数に格納
   const payload = await response.json().catch(() => ({}));
 
   if (!response.ok) {

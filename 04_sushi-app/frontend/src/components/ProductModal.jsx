@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { buildAssetUrl } from '../utils/assetUrl';
 
-export default function ProductModal({ assetBaseUrl = '/', disabled, onClose, onConfirm, product }) {
+export default function ProductModal({ disabled, onClose, onConfirm, product }) {
   const [quantity, setQuantity] = useState(1);
 
   useEffect(() => {
@@ -30,7 +30,7 @@ export default function ProductModal({ assetBaseUrl = '/', disabled, onClose, on
             {product.image_path ? (
               <img
                 className="h-64 w-64 object-contain"
-                src={buildAssetUrl(assetBaseUrl, product.image_path)}
+                src={buildAssetUrl(product.image_path)}
                 alt={product.name}
               />
             ) : (

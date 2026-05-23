@@ -7,7 +7,7 @@ import ProductModal from '../components/ProductModal';
 import SeatStatusCards from '../components/SeatStatusCards';
 import useOrderingPage from '../hooks/useOrderingPage';
 
-export default function OrderingPage({ assetBaseUrl }) {
+export default function OrderingPage() {
   const {
     seat,
     session,
@@ -38,13 +38,11 @@ export default function OrderingPage({ assetBaseUrl }) {
 
         <section className="grid grid-cols-[minmax(0,1.8fr)_minmax(280px,0.7fr)] gap-[18px] max-[900px]:grid-cols-1">
           <div className="rounded-[28px] border border-slate-200 bg-white p-[22px]">
-            <CategoryTabs
-              categories={categories}
-              selectedCategory={selectedCategory}
-              onChange={handleCategoryChange}
-            />
+            {/* TODO: CategoryTabs を表示 */}
+            {/* props: categories, selectedCategory, onChange */}
+            CategoryTabs コンポーネントを表示
+
             <ProductGrid
-              assetBaseUrl={assetBaseUrl}
               loading={isProductsLoading}
               products={products}
               disabled={session.isOrderClosed}
@@ -56,7 +54,6 @@ export default function OrderingPage({ assetBaseUrl }) {
             <SeatStatusCards seatNumber={seat.seatNumber} isOrderClosed={session.isOrderClosed} />
 
             <OrderSummary
-              assetBaseUrl={assetBaseUrl}
               orders={session.orders}
               total={session.total}
               disabled={session.isOrderClosed || session.orders.length === 0}
@@ -73,13 +70,16 @@ export default function OrderingPage({ assetBaseUrl }) {
           onConfirm={handleConfirmCheckout}
         />
 
-        <ProductModal
-          assetBaseUrl={assetBaseUrl}
-          product={selectedProduct}
-          disabled={session.isOrderClosed}
-          onClose={closeProductModal}
-          onConfirm={handleConfirmProduct}
-        />
+        {/* TODO: selectedProduct が存在する場合に ProductModal を表示 */}
+        {/* props: product, disabled, onClose = closeProductModal, onConfirm = handleConfirmProduct */}
+        {selectedProduct && (
+          <ProductModal
+            product={selectedProduct}
+            disabled={session.isOrderClosed}
+            onClose={closeProductModal}
+            onConfirm={handleConfirmProduct}
+          />
+        )}
       </div>
     </main>
   );

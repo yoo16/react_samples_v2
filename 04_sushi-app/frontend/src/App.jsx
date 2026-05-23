@@ -16,7 +16,7 @@ const SCREEN_PATHS = {
   complete: '/complete',
 };
 
-export default function App({ assetBaseUrl, initialSeatId, initialSeatNumber, initialVisitStatus }) {
+export default function App({ initialSeatId, initialSeatNumber, initialVisitStatus }) {
   const navigate = useNavigate();
   const location = useLocation();
   const messages = useMessageState();
@@ -45,7 +45,7 @@ export default function App({ assetBaseUrl, initialSeatId, initialSeatNumber, in
     <AppProviders session={session} seat={seat} messages={messages}>
       <Routes>
         <Route path="/" element={<StartPage />} />
-        <Route path="/order" element={<OrderingPage assetBaseUrl={assetBaseUrl} />} />
+        <Route path="/order" element={<OrderingPage />} />
         <Route path="/complete" element={<CheckoutCompletePage />} />
         <Route path="*" element={<Navigate to={SCREEN_PATHS[session.screen] ?? SCREEN_PATHS.start} replace />} />
       </Routes>
