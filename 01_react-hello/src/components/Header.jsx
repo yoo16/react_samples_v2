@@ -1,15 +1,21 @@
 /* src/components/Header.jsx */
 import { useAuth } from '../hooks/useAuth'
 import styles from './Header.module.css'
-import ThemeButton from './ThemeButton'
 import logo from '../assets/logo.svg'
+import logoDark from '../assets/logo-dark.svg'
+import ThemeButton from './ThemeButton'
+import { ThemeContext } from '../context/ThemeContext'
+import { useContext } from 'react'
 
 function Header() {
   const { user, logout } = useAuth()
+  const { theme } = useContext(ThemeContext)
 
   return (
     <header className={styles.header}>
-      <img src={logo} alt="ロゴ" />
+      <div className={styles.logo}>
+        <img src={theme === 'dark' ? logoDark : logo} alt="Logo" />
+      </div>
       <h1 className={styles.title}>Anime Station</h1>
       <div className={styles.actions}>
         <ThemeButton />

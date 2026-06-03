@@ -15,7 +15,7 @@ import { ThemeContext } from './context/ThemeContext'
 import { useEffect } from 'react';
 
 function App() {
-  const { user, loading: authLoading } = useAuth()
+  const { user, authLoading } = useAuth()
   const { works, loading, error } = useWorks()
 
   const [selectedGenre, setSelectedGenre] = useState('すべて')
@@ -48,6 +48,10 @@ function App() {
   useEffect(() => {
     console.log(selectedGenre)
   }, [selectedGenre])
+
+  if (authLoading) {
+    return <LoadingModal isOpen={true} />
+  }
 
   // 未ログイン
   if (!user) {
