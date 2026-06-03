@@ -8,14 +8,15 @@ import { WorkList } from './components/WorkList'
 import SearchBar from './components/SearchBar'
 import Modal from './components/Modal'
 import LoginButton from './components/LoginButton'
-import Spinner from './components/Spinner'
+import LoadingModal from './components/LoadingModal'
+import FlashMessage from './components/FlashMessage';
 import Footer from './components/Footer'
 import { ThemeContext } from './context/ThemeContext'
 import { useEffect } from 'react';
 
 function App() {
   const { user, loading: authLoading } = useAuth()
-  const { works, loading: worksLoading, error } = useWorks()
+  const { works, loading, error } = useWorks()
 
   const [selectedGenre, setSelectedGenre] = useState('すべて')
   const [query, setQuery] = useState('')
@@ -48,11 +49,6 @@ function App() {
     console.log(selectedGenre)
   }, [selectedGenre])
 
-  // 認証状態の確認中
-  if (authLoading) {
-    return <Spinner />
-  }
-
   // 未ログイン
   if (!user) {
     return <LoginButton />
@@ -62,7 +58,12 @@ function App() {
   return (
     <ThemeContext.Provider value={{ theme, toggleTheme }}>
       <div className={styles.app} data-theme={theme}>
+        <LoadingModal isOpen={loading} />
+
         <Header />
+
+        <FlashMessage message={error} type="error" />
+
         <main className={styles.main}>
           <SearchBar
             query={query}
@@ -72,16 +73,12 @@ function App() {
             onGenreChange={setSelectedGenre}
           />
 
-          {worksLoading && <Spinner />}
-          {error && <p className={styles.error}>{error}</p>}
-
-          {!worksLoading && !error && (
-            <WorkList
-              works={filteredWorks}
-              onSelect={(work) => setSelectedWork(work)}
-            />
-          )}
+          <h2 className={styles.sectionTitle}>注目作品</h2>
+          <WorkList
+            works={filteredWorks}
+            onSelect={(work) => setSelectedWork(work)} />
         </main>
+
         <Footer />
 
         {selectedWork && (
