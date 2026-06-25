@@ -1,0 +1,101 @@
+.wrapper {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: #f7f8fa;
+  color: #1d2433;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  padding: 1.25rem 2rem;
+  background: #1f2937;
+  color: #fff;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+}
+
+.brandIcon {
+  flex: 0 0 auto;
+  color: #67e8f9;
+}
+
+.label {
+  margin-bottom: 0.25rem;
+  color: #b8c2d1;
+  font-size: 0.8rem;
+}
+
+.title {
+  font-size: 1.6rem;
+  font-weight: 700;
+}
+
+.nav {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.navButton,
+.activeButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  min-width: 6rem;
+  border: 1px solid #93a4bb;
+  border-radius: 8px;
+  padding: 0.65rem 1rem;
+  font: inherit;
+  cursor: pointer;
+}
+
+.navButton {
+  background: transparent;
+  color: #fff;
+}
+
+.activeButton {
+  background: #fff;
+  color: #1f2937;
+}
+
+.main {
+  width: min(960px, 100%);
+  flex: 1;
+  margin: 0 auto;
+  padding: 2.5rem 1.5rem;
+}
+
+.footer {
+  padding: 1rem;
+  background: #e5e7eb;
+  color: #4b5563;
+  text-align: center;
+}
+
+.footer p {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+@media (max-width: 640px) {
+  .header {
+    align-items: stretch;
+    flex-direction: column;
+    padding: 1rem;
+  }
+
+  .navButton,
+  .activeButton {
+    flex: 1;
+  }
+}
